@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+  sftp-server:
+    image: atmoz/sftp
+    ports:
+      - "${SFTP_PORT}:22"
+    env_file:
+      - .env
+    volumes:
+      - ./upload:/home/${SFTP_USERNAME}/${SFTP_ROOT_FOLDER}
+    command: ${SFTP_USERNAME}:${SFTP_PASSWORD}:::${SFTP_ROOT_FOLDER}
